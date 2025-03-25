@@ -71,8 +71,7 @@ router.get("/users/:id",async(req,res)=>{
 
 router.post("/users",async(req,res)=>{
     try{
-        const {id,name,username,email}=req.body; 
-        console.log(id) 
+        const {id,name,username,email}=req.body;  
         const existed = await User.findOne({id:id}) 
         if(existed){
             return res.status(409).json({message:"user already exists"}).send()
@@ -85,5 +84,15 @@ router.post("/users",async(req,res)=>{
         res.status(500).send()
     }
 })
+
+router.get("/users",async(req,res)=>{
+    try{
+        const userData=await User.find({}) ;
+        res.status(200).json(userData).send();
+    }catch(error){
+        console.log(error)
+    }
+})
+
 
 export default router
