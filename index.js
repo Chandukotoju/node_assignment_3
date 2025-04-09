@@ -11,6 +11,8 @@ connectDb();
 app.use(express.json()) 
 
 
-app.use("/",router)
+app.use("/",router) 
+app.use("/post",router) 
+app.use("/comment",router)
 
-app.listen(4000,()=>console.log("server listening on port 3000"))
+app.listen(4000,()=>console.log("server listening on port 4000"))
