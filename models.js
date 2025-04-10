@@ -1,11 +1,13 @@
 import mongoose from "mongoose"; 
 
 const userSchema= new mongoose.Schema({
-     name:{type:String},
-     username:{type:String,required:true},
-     email:{type:String,required:true}
+     password:{type:String},  
+     username:{type:String,required:true},  
+     email:{type:String,required:true},  
+     profileUrl:{type:String}, 
+     bio:{type:String} 
 }) 
-export const User=mongoose.model("user",userSchema)
+export const User=mongoose.model("User",userSchema)
 
 const postSchema=new mongoose.Schema({ 
      profileUrl:{type:String},
@@ -15,13 +17,12 @@ const postSchema=new mongoose.Schema({
      usename:{type:String},
 }) 
 
-export const Post=mongoose.model("post",postSchema)
+export const Post=mongoose.model("Post",postSchema)
 
 const commmentSchema= new mongoose.Schema({ 
-    postId:{type:mongoose.Schema.Types.ObjectId,ref:"Post"},
-    username:{type:String,required:true},
-    profileUrl:{type:String,required:true}, 
-    content:{type:String}
+    postId:{type:mongoose.Schema.Types.ObjectId,ref:"Post"}, 
+    content:{type:String},
+    userId:{type:mongoose.Schema.Types.ObjectId,ref:"User"}
 })
 
 export const Comment=mongoose.model("Comment",commmentSchema)
