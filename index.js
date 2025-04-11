@@ -13,11 +13,6 @@ connectDb();
 
 app.use(express.json())  
 
-await User.deleteMany({});
-await Post.deleteMany({});
-await Comment.deleteMany({});
-
-
 app.use("/users",userRouter) 
 app.use("/post",postRouter) 
 app.use("/comment",commentRouter)
