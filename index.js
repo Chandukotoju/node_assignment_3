@@ -4,13 +4,18 @@ import cors from "cors";
 import userRouter from "./routes/user.route.js";
 import postRouter from "./routes/post.route.js";
 import commentRouter from "./routes/comment.route.js";
+import { Comment, Post, User } from "./models.js";
 
 const app=express(); 
 app.use(cors())
 
 connectDb();
 
-app.use(express.json()) 
+app.use(express.json())  
+
+await User.deleteMany({});
+await Post.deleteMany({});
+await Comment.deleteMany({});
 
 
 app.use("/users",userRouter) 

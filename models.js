@@ -10,19 +10,19 @@ const userSchema= new mongoose.Schema({
 export const User=mongoose.model("User",userSchema)
 
 const postSchema=new mongoose.Schema({ 
-     profileUrl:{type:String},
      imageUrl:{type:String}, 
      caption:{type:String},
-     userId:{type:mongoose.Schema.Types.ObjectId,ref:"User"}, 
-     usename:{type:String},
-}) 
+     userId:{type:mongoose.Schema.Types.ObjectId,ref:"User"},  
+}, { timestamps: true }) 
+
+postSchema.index({ userId: 1 });
 
 export const Post=mongoose.model("Post",postSchema)
 
 const commmentSchema= new mongoose.Schema({ 
-    postId:{type:mongoose.Schema.Types.ObjectId,ref:"Post"}, 
-    content:{type:String},
-    userId:{type:mongoose.Schema.Types.ObjectId,ref:"User"}
-})
+    postId:{type:mongoose.Schema.Types.ObjectId,ref:"Post",required:true}, 
+    content:{type:String,required:true},
+    userId:{type:mongoose.Schema.Types.ObjectId,ref:"User",required:true}
+},{timestamps:true})
 
 export const Comment=mongoose.model("Comment",commmentSchema)

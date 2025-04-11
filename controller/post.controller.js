@@ -2,10 +2,10 @@ import { Post ,User } from "../models.js";
 
 export const addPost=(async(req,res)=>{
     try{
-        const {profileUrl,username,imageUrl,caption}=req.body; 
+        const {imageUrl,caption}=req.body; 
         const userId=req.user.id
         const newPost = new Post({
-        username,profileUrl,imageUrl,caption ,userId
+        imageUrl,caption ,userId
        }) 
        await newPost.save() 
        res.status(200).json({message:"posted successfully",newPost})
